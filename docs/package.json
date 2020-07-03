@@ -8,6 +8,7 @@
   "scripts": {
     "start": "component-docs serve",
     "build": "component-docs build",
+    "prepare": "npm run build",
     "clean": "del dist/",
     "prestart": "yarn clean"
   },

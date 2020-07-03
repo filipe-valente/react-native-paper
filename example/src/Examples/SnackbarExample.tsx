@@ -22,6 +22,7 @@ const SnackbarExample = () => {
           onPress: () => {
             // Do something
           },
+          dismiss: false,
         }}
         duration={Snackbar.DURATION_MEDIUM}
       >

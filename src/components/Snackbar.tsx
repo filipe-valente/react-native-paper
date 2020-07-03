@@ -23,11 +23,13 @@ type Props = React.ComponentProps<typeof Surface> & {
    * Label and press callback for the action button. It should contain the following properties:
    * - `label` - Label of the action button
    * - `onPress` - Callback that is called when action button is pressed.
+   * - `dismiss` - Boolean that will determine if the snackbar is dismissed on action
    */
   action?: {
     label: string;
     accessibilityLabel?: string;
     onPress: () => void;
+    dismiss: boolean;
   };
   /**
    * The duration for which the Snackbar is shown.
@@ -210,7 +212,6 @@ class Snackbar extends React.Component<Props, State> {
       children,
       visible,
       action,
-      actionWithoutDismiss,
       onDismiss,
       theme,
       style,
@@ -269,21 +270,7 @@ class Snackbar extends React.Component<Props, State> {
               accessibilityLabel={action.accessibilityLabel}
               onPress={() => {
                 action.onPress();
-                onDismiss();
-              }}
-              style={styles.button}
-              color={colors.accent}
-              compact
-              mode="text"
-            >
-              {action.label}
-            </Button>
-          ) : null}
-          {actionWithoutDismiss ? (
-            <Button
-              accessibilityLabel={action.accessibilityLabel}
-              onPress={() => {
-                action.onPress();
+                action.dismiss ? onDismiss() : null;
               }}
               style={styles.button}
               color={colors.accent}

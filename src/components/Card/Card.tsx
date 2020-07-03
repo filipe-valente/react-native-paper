@@ -34,7 +34,7 @@ type Props = React.ComponentProps<typeof Surface> & {
    * Content of the `Card`.
    */
   children: React.ReactNode;
-  style?: StyleProp<ViewStyle>;
+  style?: StyleProp<ViewStyle> | object;
   /**
    * @optional
    */
@@ -147,7 +147,7 @@ class Card extends React.Component<Props, State> {
     );
     return (
       <Surface
-        style={[{ borderRadius: roundness, elevation }, style]}
+        style={[{ borderRadius: roundness, elevation } as any, style]}
         {...rest}
       >
         <TouchableWithoutFeedback

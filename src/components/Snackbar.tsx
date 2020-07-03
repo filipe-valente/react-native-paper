@@ -210,6 +210,7 @@ class Snackbar extends React.Component<Props, State> {
       children,
       visible,
       action,
+      actionWithoutDismiss,
       onDismiss,
       theme,
       style,
@@ -269,6 +270,20 @@ class Snackbar extends React.Component<Props, State> {
               onPress={() => {
                 action.onPress();
                 onDismiss();
+              }}
+              style={styles.button}
+              color={colors.accent}
+              compact
+              mode="text"
+            >
+              {action.label}
+            </Button>
+          ) : null}
+          {actionWithoutDismiss ? (
+            <Button
+              accessibilityLabel={action.accessibilityLabel}
+              onPress={() => {
+                action.onPress();
               }}
               style={styles.button}
               color={colors.accent}
